@@ -7,6 +7,6 @@
 - Production Alias URL: https://enzyclean.vercel.app
 - Dashboard URL: https://vercel.com/info-zukunftsories-projects/enzyclean
 - Local Linked Project File: website-next/.vercel/project.json
-- Local Project Root: `/Users/jeremyschulze/dev/AIOMETRICS/08-enzyclean/website-next`
+- Local Project Root: `/Users/jeremyschulze/dev/AIOMETRICS/08-EnzyClean/website-next`
 - Status: linked (Git + Vercel), first successful deployment `READY`
 - Latest successful deployment: https://enzyclean-iojmgw3sv-info-zukunftsories-projects.vercel.app

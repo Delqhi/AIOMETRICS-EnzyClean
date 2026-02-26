@@ -52,7 +52,7 @@ const legalEvidence: EvidenceLink[] = [
 ];
 
 const map: Record<string, PatentIntelligence> = {
-  "01-petvat": {
+  "01-petvet": {
     code: "AB-01",
     filedOn: "2026-02-14",
     title: "AI-assisted multisensor health monitoring and diagnostics for pets",
@@ -337,7 +337,7 @@ const map: Record<string, PatentIntelligence> = {
       { label: "EU Commission AI Act Entry Into Force", href: "https://commission.europa.eu/news/ai-act-enters-force-2024-08-01_en" }
     ]
   },
-  "06-biorotic-sync": {
+  "06-bioroticsync": {
     code: "AB-06",
     filedOn: "2026-02-14",
     title: "Biometric telepresence with haptic feedback and predictive latency control",
@@ -388,7 +388,7 @@ const map: Record<string, PatentIntelligence> = {
     legalRealityChecks,
     evidence: [...legalEvidence]
   },
-  "07-spaice-logistic": {
+  "07-spaicelogistic": {
     code: "AB-07/08/09",
     filedOn: "2026-02-14",
     title: "Distributed drone delivery station, charging node, and multi-drone orchestration",
@@ -507,5 +507,5 @@ const map: Record<string, PatentIntelligence> = {
   }
 };
 
-export const patentIntel: PatentIntelligence = map[site.id] ?? map["01-petvat"];
+export const patentIntel: PatentIntelligence = map[site.id] ?? map["01-petvet"];
 export const patentResearchUpdatedAt = "2026-02-26";

@@ -5,7 +5,7 @@ Status: onboarding
 
 ## Basis
 Canonical Path:
-- `/Users/jeremyschulze/dev/AIOMETRICS/08-enzyclean`
+- `/Users/jeremyschulze/dev/AIOMETRICS/08-EnzyClean`
 
 ## Pflichtordner
 - `00-CEO/`
