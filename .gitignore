@@ -2,3 +2,6 @@
 .vercel
 website-next/.vercel
 node_modules
+website-next/node_modules
+website-next/.next
+*.log

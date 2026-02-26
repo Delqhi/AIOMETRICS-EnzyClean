@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SKIP_BUILD="${SKIP_BUILD:-0}"
+
 if ! command -v vercel >/dev/null 2>&1; then
   echo "vercel CLI missing. install: npm i -g vercel"
   exit 1
@@ -16,10 +18,23 @@ if ! vercel whoami >/dev/null 2>&1; then
   exit 1
 fi
 
-npm --prefix website-next ci
-npm --prefix website-next run lint
-npm --prefix website-next run typecheck
-npm --prefix website-next run build
+# If root link is missing, bootstrap it from existing website link.
+if [ ! -f ".vercel/project.json" ] && [ -f "website-next/.vercel/project.json" ]; then
+  mkdir -p .vercel
+  cp website-next/.vercel/project.json .vercel/project.json
+fi
 
-# Run from repo root so Vercel rootDirectory=website-next resolves correctly.
-vercel --prod
+if [ ! -f ".vercel/project.json" ]; then
+  echo "missing .vercel/project.json. run: (cd website-next && vercel link)"
+  exit 1
+fi
+
+if [ "$SKIP_BUILD" != "1" ]; then
+  npm --prefix website-next ci
+  npm --prefix website-next run lint
+  npm --prefix website-next run typecheck
+  npm --prefix website-next run build
+fi
+
+# Non-interactive production deploy.
+vercel --prod --yes
