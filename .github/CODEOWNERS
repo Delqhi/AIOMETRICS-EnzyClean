@@ -1,0 +1,7 @@
+# AIOMETRICS portfolio ownership (2026)
+# GitHub branch protection / rulesets can require CODEOWNERS reviews.
+* @Delqhi
+
+# Sensitive workflow/config surface
+/.github/ @Delqhi
+/website-next/ @Delqhi
