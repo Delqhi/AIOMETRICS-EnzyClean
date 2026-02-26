@@ -16,9 +16,10 @@ if ! vercel whoami >/dev/null 2>&1; then
   exit 1
 fi
 
-cd website-next
-npm ci
-npm run lint
-npm run typecheck
-npm run build
+npm --prefix website-next ci
+npm --prefix website-next run lint
+npm --prefix website-next run typecheck
+npm --prefix website-next run build
+
+# Run from repo root so Vercel rootDirectory=website-next resolves correctly.
 vercel --prod
