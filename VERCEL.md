@@ -8,4 +8,4 @@
 - Dashboard URL: https://vercel.com/info-zukunftsories-projects/enzyclean
 - Local Linked Project File: website-next/.vercel/project.json
 - Local Project Root: `/Users/jeremyschulze/dev/AIOMETRICS/08-enzyclean/website-next`
-- Status: linked (Git + Vercel), deployment bootstrap pending
+- Status: linked (Git + Vercel), first Git deployment currently `ERROR` until `website-next` app scaffold is complete
