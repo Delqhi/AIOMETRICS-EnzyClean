@@ -1,0 +1,29 @@
+name: Standards Revalidation
+
+on:
+  schedule:
+    - cron: "0 7 1 * *"
+  workflow_dispatch:
+
+jobs:
+  standards-revalidation:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+    env:
+      NLM_STANDARDS_MAX_AGE_DAYS: "35"
+      NLM_STANDARDS_TIMEOUT_SECONDS: "25"
+      NLM_STANDARDS_RETRIES: "3"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate standards baseline (full)
+        run: |
+          if [ -d 10-AgentJudgeKernel ]; then
+            cd 10-AgentJudgeKernel
+          fi
+          chmod +x ./scripts/verify-standards-baseline.sh
+          ./scripts/verify-standards-baseline.sh --mode full

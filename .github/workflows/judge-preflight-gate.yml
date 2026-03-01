@@ -1,0 +1,55 @@
+name: Judge Preflight Gate
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  judge-gate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+    env:
+      NLM_JUDGE_NOTEBOOK_ID: ${{ secrets.NLM_JUDGE_NOTEBOOK_ID }}
+      NLM_MIN_CITATIONS: "1"
+      NLM_GATE_MODULE: CoreModule
+      NLM_GATE_WORKFLOW: LoginFlow
+      NLM_ENFORCE_STANDARDS_FRESHNESS: "1"
+      NLM_ALLOW_AUTH_FAILURE: "1"
+      NOTEBOOKLM_COOKIES: ${{ secrets.NOTEBOOKLM_COOKIES }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install notebooklm-mcp-cli==0.3.16
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Validate required secrets
+        run: |
+          if [ -z "${NLM_JUDGE_NOTEBOOK_ID:-}" ]; then
+            echo "ERROR: missing NLM_JUDGE_NOTEBOOK_ID secret" >&2
+            exit 1
+          fi
+          if [ -z "${NOTEBOOKLM_COOKIES:-}" ]; then
+            echo "ERROR: missing NOTEBOOKLM_COOKIES secret" >&2
+            exit 1
+          fi
+
+      - name: Run Judge preflight gate
+        run: |
+          if [ -d 10-AgentJudgeKernel ]; then
+            cd 10-AgentJudgeKernel
+          fi
+          chmod +x ./scripts/nlm-judge-query.sh ./scripts/verify-standards-baseline.sh ./scripts/judge-preflight-gate.sh
+          ./scripts/judge-preflight-gate.sh
