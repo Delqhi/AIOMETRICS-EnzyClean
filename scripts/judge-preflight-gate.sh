@@ -73,7 +73,7 @@ run_gate() {
   trap 'rm -f "$out"' RETURN
 
   if ! "$QUERY_SCRIPT" "$mode" "$arg" >"$out" 2>&1; then
-    if [ "$ALLOW_AUTH_FAILURE" = "1" ] && rg -qi 'Authentication expired|Run `nlm login`|Profile .+ not found' "$out"; then
+    if [ "$ALLOW_AUTH_FAILURE" = "1" ] && grep -Eiq 'Authentication expired|Run `nlm login`|Profile .+ not found' "$out"; then
       echo "[gate:$mode] SKIP auth_unavailable"
       AUTH_SKIPPED=1
       return 0
