@@ -1,4 +1,6 @@
 import Link from "next/link";
+import PatentModelViewer from "@/components/patent/PatentModelViewer";
+import { patent3DScene } from "@/lib/patent-3d";
 import { patentIntel, patentResearchUpdatedAt } from "@/lib/patent-intelligence";
 
 export default function PatentPage() {
@@ -18,7 +20,18 @@ export default function PatentPage() {
       </section>
 
       <section className="panel reveal-up" data-reveal>
+        <PatentModelViewer
+          scene={patent3DScene}
+          locale="en"
+          showHotspotsDefault
+          allowAr={false}
+          analyticsContext="patent-root"
+        />
+      </section>
+
+      <section className="panel reveal-up" data-reveal>
         <div className="section-head">
+          <p className="section-kicker">Claim Structure</p>
           <h2>Claim Frames</h2>
           <p>The core technical blocks that define differentiation and protection scope.</p>
         </div>
@@ -35,7 +48,7 @@ export default function PatentPage() {
 
       <section className="panel reveal-up" data-reveal>
         <div className="split-grid">
-          <article className="surface card">
+          <article className="surface card board-card">
             <h3>Defensibility Signals</h3>
             <ul className="list-tight">
               {patentIntel.defensibilitySignals.map((item) => (
@@ -43,7 +56,7 @@ export default function PatentPage() {
               ))}
             </ul>
 
-            <h3 style={{ marginTop: "0.9rem" }}>Legal Reality Checks</h3>
+            <h3 className="list-block-title">Legal Reality Checks</h3>
             <ul className="list-tight">
               {patentIntel.legalRealityChecks.map((item) => (
                 <li key={item}>{item}</li>
@@ -51,7 +64,7 @@ export default function PatentPage() {
             </ul>
           </article>
 
-          <article className="surface card">
+          <article className="surface card board-card">
             <h3>Success Drivers</h3>
             <ul className="list-tight">
               {patentIntel.successDrivers.map((item) => (
@@ -59,7 +72,7 @@ export default function PatentPage() {
               ))}
             </ul>
 
-            <h3 style={{ marginTop: "0.9rem" }}>Risk Checks</h3>
+            <h3 className="list-block-title">Risk Checks</h3>
             <ul className="list-tight">
               {patentIntel.riskChecks.map((item) => (
                 <li key={item}>{item}</li>
@@ -71,6 +84,7 @@ export default function PatentPage() {
 
       <section className="panel reveal-up" data-reveal>
         <div className="section-head">
+          <p className="section-kicker">Market Mapping</p>
           <h2>Competitive Separation</h2>
           <p>Who is active in this field and why the claim space is still independent.</p>
         </div>
@@ -92,6 +106,7 @@ export default function PatentPage() {
 
       <section className="panel reveal-up" data-reveal>
         <div className="section-head">
+          <p className="section-kicker">Source Trail</p>
           <h2>Primary Evidence</h2>
           <p>External references used for this patent positioning and legal-reality framing.</p>
         </div>
@@ -104,11 +119,11 @@ export default function PatentPage() {
         </div>
 
         <div className="cta-row">
-          <Link href="/waitlist" className="btn btn-primary">
-            Join Waitlist
+          <Link href="/" className="btn btn-primary">
+            Back to Home
           </Link>
-          <Link href="/investors" className="btn btn-muted">
-            Investor Brief
+          <Link href="/#execution" className="btn btn-muted">
+            Execution Loop
           </Link>
         </div>
       </section>

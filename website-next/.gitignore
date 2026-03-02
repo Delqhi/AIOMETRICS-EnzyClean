@@ -1,1 +1,5 @@
 .vercel
+
+# Cloudflare/OpenNext build output
+.open-next/
+.reports/

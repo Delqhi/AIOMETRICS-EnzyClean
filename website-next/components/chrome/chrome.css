@@ -1,0 +1,343 @@
+.chrome-header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  border-bottom: 1px solid color-mix(in srgb, var(--theme-header-border, var(--theme-border)) 72%, transparent);
+  background: var(--theme-header-bg, #1b2435);
+  backdrop-filter: saturate(120%) blur(10px);
+}
+
+.chrome-header-main,
+.chrome-footer-inner {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.chrome-header-main {
+  min-height: 4.35rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chrome-brand-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chrome-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.62rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.chrome-brand-mark {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0.28rem;
+  background: var(--theme-accent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--theme-accent) 60%, black);
+}
+
+.chrome-brand-copy {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.chrome-brand-title {
+  font-family: var(--font-display), "Sora", "Segoe UI", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 760;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.chrome-brand-subtitle {
+  font-size: 0.71rem;
+  line-height: 1.1;
+  color: rgba(243, 247, 255, 0.84);
+}
+
+.chrome-project-tag {
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(239, 244, 255, 0.92);
+  padding: 0.3rem 0.62rem;
+  font-size: 0.72rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.chrome-project-tag span {
+  color: #ffffff;
+  font-weight: 650;
+}
+
+.chrome-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+}
+
+.chrome-nav-link {
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 0.58rem;
+  padding: 0.28rem 0.58rem;
+  font-size: 0.84rem;
+  font-weight: 620;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.chrome-nav-link:hover,
+.chrome-nav-link:focus-visible {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.chrome-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+}
+
+.chrome-locale {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.chrome-locale a {
+  padding: 0.34rem 0.56rem;
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 720;
+  color: rgba(240, 245, 255, 0.9);
+  letter-spacing: 0.04em;
+}
+
+.chrome-locale a[data-active="true"] {
+  background: color-mix(in srgb, var(--theme-accent) 56%, black);
+  color: #fff;
+}
+
+.chrome-cta {
+  min-height: 2.06rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  background: color-mix(in srgb, var(--theme-accent) 56%, black);
+  border: 1px solid color-mix(in srgb, var(--theme-accent) 62%, black);
+  border-radius: 0.62rem;
+  padding: 0.34rem 0.72rem;
+  font-size: 0.82rem;
+  font-weight: 680;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 120ms ease;
+}
+
+.chrome-cta:hover,
+.chrome-cta:focus-visible {
+  background: color-mix(in srgb, var(--theme-accent) 70%, black);
+  border-color: color-mix(in srgb, var(--theme-accent) 74%, black);
+  transform: translateY(-1px);
+}
+
+.chrome-footer {
+  margin-top: clamp(2.25rem, 4vw, 4rem);
+  border-top: 1px solid color-mix(in srgb, var(--theme-border) 88%, white);
+  background: var(--theme-surface);
+  color: var(--theme-text);
+}
+
+.chrome-footer-inner {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(1.25rem, 2.4vw, 2rem) 0;
+}
+
+.chrome-footer-intro {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.chrome-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.chrome-footer-brand-title {
+  margin: 0;
+  font-family: var(--font-display), "Sora", "Segoe UI", sans-serif;
+  font-size: 0.94rem;
+  font-weight: 760;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.chrome-footer-brand-subtitle {
+  margin: 0.12rem 0 0;
+  font-size: 0.74rem;
+  color: var(--theme-muted);
+}
+
+.chrome-footer-summary {
+  margin: 0;
+  max-width: 78ch;
+  color: var(--theme-muted);
+}
+
+.chrome-footer-kpi {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.52rem;
+}
+
+.chrome-footer-kpi article {
+  border: 1px solid var(--theme-border);
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--theme-surface) 88%, var(--theme-accent-soft));
+  padding: 0.56rem 0.65rem;
+  display: grid;
+  gap: 0.18rem;
+}
+
+.chrome-footer-kpi span {
+  font-size: 0.72rem;
+  color: var(--theme-muted);
+}
+
+.chrome-footer-kpi strong {
+  font-size: 0.86rem;
+  color: var(--theme-text);
+}
+
+.chrome-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.82rem;
+}
+
+.chrome-footer-grid h3 {
+  margin: 0;
+  font-size: 0.84rem;
+  font-family: var(--font-display), "Sora", "Segoe UI", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.chrome-footer-grid ul {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.42rem;
+}
+
+.chrome-footer-grid li,
+.chrome-footer-grid a {
+  color: var(--theme-muted);
+  text-decoration: none;
+  font-size: 0.84rem;
+}
+
+.chrome-footer-grid a:hover,
+.chrome-footer-grid a:focus-visible {
+  color: var(--theme-text);
+  text-decoration: underline;
+}
+
+.chrome-footer-bottom {
+  border-top: 1px solid var(--theme-border);
+  padding-top: 0.72rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.chrome-footnote {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--theme-muted);
+}
+
+.chrome-footnote-secondary {
+  text-align: right;
+}
+
+@media (max-width: 1100px) {
+  .chrome-header-main {
+    grid-template-columns: 1fr;
+    padding: 0.66rem 0;
+  }
+
+  .chrome-brand-wrap,
+  .chrome-nav,
+  .chrome-actions {
+    justify-content: center;
+  }
+
+  .chrome-project-tag {
+    display: none;
+  }
+
+  .chrome-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 780px) {
+  .chrome-nav {
+    row-gap: 0.45rem;
+  }
+
+  .chrome-nav-link {
+    min-height: 2.12rem;
+    font-size: 0.81rem;
+  }
+
+  .chrome-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .chrome-footer-kpi {
+    grid-template-columns: 1fr;
+  }
+
+  .chrome-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chrome-footnote-secondary {
+    text-align: left;
+  }
+}

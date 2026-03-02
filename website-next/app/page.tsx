@@ -31,7 +31,7 @@ export default function HomePage() {
         <span>{patentIntel.code}</span>
       </div>
 
-      <section className="hero hero-depth panel hero-prime reveal-up" data-reveal>
+      <section className="hero hero-depth panel hero-prime hero-home reveal-up" data-reveal>
         <div className="hero-aura hero-aura-a" aria-hidden />
         <div className="hero-aura hero-aura-b" aria-hidden />
 
@@ -48,8 +48,8 @@ export default function HomePage() {
               <Link href="/patent" className="btn btn-primary">
                 Open Patent Intelligence
               </Link>
-              <Link href="/waitlist" className="btn btn-muted">
-                Join Waitlist
+              <Link href="/#evidence" className="btn btn-muted">
+                View Evidence
               </Link>
             </div>
 
@@ -81,6 +81,7 @@ export default function HomePage() {
 
       <section className="panel reveal-up" data-reveal>
         <div className="section-head">
+          <p className="section-kicker">Claim Architecture</p>
           <h2>Patent Moat Frames</h2>
           <p>Concrete claim blocks your team can explain without legal jargon.</p>
         </div>
@@ -98,7 +99,7 @@ export default function HomePage() {
 
       <section className="panel reveal-up" data-reveal>
         <div className="split-grid">
-          <article className="surface card">
+          <article className="surface card board-card">
             <h3>Competitive Landscape</h3>
             <ul className="stack-list">
               {patentIntel.competitors.map((item) => (
@@ -114,14 +115,14 @@ export default function HomePage() {
             </ul>
           </article>
 
-          <article className="surface card">
+          <article className="surface card board-card">
             <h3>Success and Risk Board</h3>
             <ul className="list-tight">
               {patentIntel.successDrivers.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <h3 style={{ marginTop: "0.9rem" }}>Risk Checks</h3>
+            <h3 className="list-block-title">Risk Checks</h3>
             <ul className="list-tight">
               {patentIntel.riskChecks.map((item) => (
                 <li key={item}>{item}</li>
@@ -131,8 +132,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="panel reveal-up" data-reveal>
+      <section id="evidence" className="panel reveal-up" data-reveal>
         <div className="section-head">
+          <p className="section-kicker">Evidence Quality</p>
           <h2>Legal Reality and Evidence</h2>
           <p>No hype claims: this section keeps the team honest and decision-ready.</p>
         </div>
@@ -152,8 +154,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="panel reveal-up" data-reveal>
+      <section id="execution" className="panel reveal-up" data-reveal>
         <div className="section-head">
+          <p className="section-kicker">Commercialization</p>
           <h2>Execution Loop</h2>
           <p>How this patent website converts defensibility into real product momentum.</p>
         </div>
@@ -172,8 +175,8 @@ export default function HomePage() {
           <Link href="/patent" className="btn btn-primary">
             Deep Patent Page
           </Link>
-          <Link href="/investors" className="btn btn-muted">
-            Investor Brief
+          <Link href="/#evidence" className="btn btn-muted">
+            Evidence Brief
           </Link>
         </div>
       </section>

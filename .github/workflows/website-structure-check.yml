@@ -1,0 +1,132 @@
+name: website-quality-check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 1"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website-next
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+          cache-dependency-path: website-next/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Validate glTF assets
+        run: npm run validate:gltf
+
+      - name: Validate security headers
+        run: npm run check:headers
+
+      - name: Build
+        run: npm run build
+
+  a11y:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website-next
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+          cache-dependency-path: website-next/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run accessibility gate
+        env:
+          A11Y_PATH: "/"
+          A11Y_REPORT_FILE: ".reports/axe-results.json"
+        run: npm run test:a11y
+
+      - name: Upload accessibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: website-next/.reports/axe-results.json
+          if-no-files-found: ignore
+          retention-days: 14
+
+  perf_budget:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website-next
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+          cache-dependency-path: website-next/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run performance budget gate
+        env:
+          PERF_PATH: "/"
+          PERF_MIN_SCORE: "0.85"
+          PERF_MAX_LCP_MS: "2500"
+          PERF_MAX_CLS: "0.1"
+          PERF_REPORT_FILE: ".reports/lighthouse-report.json"
+        run: npm run test:perf
+
+      - name: Upload lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: perf-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: website-next/.reports/lighthouse-report.json
+          if-no-files-found: ignore
+          retention-days: 14
+
+  security:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website-next
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+          cache-dependency-path: website-next/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit dependencies (high/critical gate)
+        run: npm audit --audit-level=high
