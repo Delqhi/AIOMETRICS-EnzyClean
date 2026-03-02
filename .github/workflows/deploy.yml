@@ -28,6 +28,6 @@ jobs:
       - name: Deploy to Cloudflare Workers
         run: cd website-next && npm run cf:deploy
         env:
-          CLOUDFLARE_API_KEY: ${{ secrets.CF_API_KEY }}
-          CLOUDFLARE_EMAIL: ${{ secrets.CF_EMAIL }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
