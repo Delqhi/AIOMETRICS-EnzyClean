@@ -9,6 +9,7 @@ Set these values per project:
 - `PROJECT_GOOGLE_DOC_ID`
 - `PROJECT_NOTEBOOK_ID`
 - `PROJECT_GOOGLE_DOC_URL` (optional but recommended)
+- `PROJECT_GOOGLE_DRIVE_FOLDER_ID` (Drive folder where new master docs are created)
 - `GOOGLE_SERVICE_ACCOUNT_KEY` (path to service account key JSON) or equivalent access token provider
 
 ## Non-Negotiable Rules
@@ -18,6 +19,8 @@ Set these values per project:
 4. Every mandatory NotebookLM query must return citations; without citations return `BLOCKED`.
 5. If notebook/doc IDs, auth, or constraints are unclear: stop and ask.
 6. High-risk actions require explicit HITL approval.
+7. If `PROJECT_GOOGLE_DOC_ID` is missing, create a new Google Doc automatically in `PROJECT_GOOGLE_DRIVE_FOLDER_ID` using service account API.
+8. Group tabs hierarchically by category (parent/child tabs), not as a flat list.
 
 ## Universal Preflight (Required Per Task)
 1. Verify access to Master Google Doc via service account/API.
@@ -34,6 +37,24 @@ Set these values per project:
 3. After successful migration and audit confirmation, delete migrated local docs (except `AGENTS.md`).
 4. Keep NotebookLM connected to this single Master Google Doc source.
 5. Trigger source sync after document updates.
+
+## Required Tab Hierarchy
+1. `00_FOUNDATION`
+- `Agents.md`
+- `CONTEXT.md`
+- `readme.md`
+2. `01_DESIGN`
+- `ARCHITECTURE.md`
+- `DESIGN.md`
+3. `02_ENGINEERING`
+- `BACKEND.md`
+- `FRONTEND.md`
+4. `03_INFRASTRUCTURE`
+- `VM.md`
+- `VERCEL.md`
+- `CLOUDFLARE.md`
+5. `04_INTELLIGENCE`
+- `NOTEBOOKLM.md`
 
 ## Mandatory Query Pattern
 ```bash

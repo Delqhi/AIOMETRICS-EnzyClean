@@ -14,15 +14,25 @@ Lokal im Projekt bleibt nur `AGENTS.md` als Agentenprotokoll.
 4. Ohne Citation-Evidence: `BLOCKED`.
 5. High-Risk-Aktionen nur mit expliziter Human-Freigabe.
 
-## Empfohlene Tab-Struktur
-- `00_INDEX`
-- `01_CONSTITUTION`
-- `02_MISSION_SRS`
-- `03_ARCHITECTURE`
-- `04_API_CONTRACTS`
-- `05_ADR_LOG`
-- `06_SRE_PLAYBOOK`
-- Zusätzlich: ein Tab pro migrierter Alt-Datei, bis die Migration bereinigt ist.
+## Verbindliche Parent/Child-Tab-Struktur
+- Parent `00_FOUNDATION`
+  - `Agents.md`
+  - `CONTEXT.md`
+  - `readme.md`
+- Parent `01_DESIGN`
+  - `ARCHITECTURE.md`
+  - `DESIGN.md`
+- Parent `02_ENGINEERING`
+  - `BACKEND.md`
+  - `FRONTEND.md`
+- Parent `03_INFRASTRUCTURE`
+  - `VM.md`
+  - `VERCEL.md`
+  - `CLOUDFLARE.md`
+- Parent `04_INTELLIGENCE`
+  - `NOTEBOOKLM.md`
+- Root tab `00_INDEX` als Navigations- und Audit-Übersicht.
+- Zusätzlich: dynamische Child-Tabs pro migrierter Alt-Datei unter der passenden Parent-Kategorie.
 
 ## Umsetzung mit Dienstkonto
 Voraussetzungen:
@@ -36,6 +46,7 @@ Dry-run:
 KERNEL_MODE=dry-run \
 PROJECT_GOOGLE_DOC_ID="<DOC_ID>" \
 PROJECT_NOTEBOOK_ID="<NOTEBOOK_ID>" \
+PROJECT_GOOGLE_DRIVE_FOLDER_ID="<FOLDER_ID>" \
 GOOGLE_SERVICE_ACCOUNT_KEY="/path/to/service-account.json" \
 /Users/jeremyschulze/dev/AIOMETRICS/shared/scripts/gdoc-kernel-sync.sh <repo-key-or-path>
 ```
@@ -45,9 +56,21 @@ Sync:
 KERNEL_MODE=sync \
 PROJECT_GOOGLE_DOC_ID="<DOC_ID>" \
 PROJECT_NOTEBOOK_ID="<NOTEBOOK_ID>" \
+PROJECT_GOOGLE_DRIVE_FOLDER_ID="<FOLDER_ID>" \
 GOOGLE_SERVICE_ACCOUNT_KEY="/path/to/service-account.json" \
 ENFORCE_SINGLE_SOURCE=1 \
 SYNC_NOTEBOOK=1 \
+/Users/jeremyschulze/dev/AIOMETRICS/shared/scripts/gdoc-kernel-sync.sh <repo-key-or-path>
+```
+
+Autonomes Create (wenn `DOC_ID` fehlt):
+```bash
+KERNEL_MODE=sync \
+CREATE_GOOGLE_DOC_IF_MISSING=1 \
+PROJECT_GOOGLE_DOC_TITLE="AIOMETRICS <PROJECT> Master Kernel" \
+PROJECT_GOOGLE_DRIVE_FOLDER_ID="<FOLDER_ID>" \
+PROJECT_NOTEBOOK_ID="<NOTEBOOK_ID>" \
+GOOGLE_SERVICE_ACCOUNT_KEY="/path/to/service-account.json" \
 /Users/jeremyschulze/dev/AIOMETRICS/shared/scripts/gdoc-kernel-sync.sh <repo-key-or-path>
 ```
 
