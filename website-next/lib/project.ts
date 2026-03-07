@@ -6,4 +6,5 @@ export type ProjectId =
   | "04-nutritioncare"
   | "05-mindsafeguardian"
   | "06-bioroticsync"
-  | "07-spaicelogistic";
+  | "07-spaicelogistic"
+  | "08-enzyclean";

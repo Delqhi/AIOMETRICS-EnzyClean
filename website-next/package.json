@@ -13,6 +13,8 @@
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "validate:gltf": "bash scripts/validate-gltf-assets.sh",
+    "test:visual": "npm run build && node ./scripts/run-visual-tests.mjs",
+    "test:visual:update": "npm run build && node ./scripts/run-visual-tests.mjs --update-snapshots",
     "test:a11y": "npm run build && node ./scripts/run-a11y-check.mjs",
     "test:perf": "npm run build && node ./scripts/run-perf-budget.mjs",
     "check:headers": "node ./scripts/check-security-headers.mjs",
@@ -27,6 +29,7 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@types/node": "22.19.1",
     "@types/react": "19.2.4",
     "@types/react-dom": "19.2.2",

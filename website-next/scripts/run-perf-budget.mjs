@@ -7,7 +7,7 @@ import { tmpdir } from "node:os";
 import net from "node:net";
 
 const HOST = process.env.PERF_HOST ?? "127.0.0.1";
-const BASE_PATH = process.env.PERF_PATH ?? "/";
+const BASE_PATH = process.env.PERF_PATH ?? "/de";
 const TIMEOUT_MS = Number(process.env.PERF_TIMEOUT_MS ?? "90000");
 const MIN_SCORE = Number(process.env.PERF_MIN_SCORE ?? "0.85");
 const MAX_LCP_MS = Number(process.env.PERF_MAX_LCP_MS ?? "2500");

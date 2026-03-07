@@ -29,7 +29,8 @@ export const portfolioLinks: PortfolioLink[] = [
   { id: "04-nutritioncare", name: "NutritionCare", href: "https://nutritioncare.ai" },
   { id: "05-mindsafeguardian", name: "MindSafeGuardian", href: "https://mindsafeguardian.ai" },
   { id: "06-bioroticsync", name: "Biorotic Sync", href: "https://biorotic-sync.ai" },
-  { id: "07-spaicelogistic", name: "Spaice Logistic", href: "https://spaice-logistic.ai" }
+  { id: "07-spaicelogistic", name: "Spaice Logistic", href: "https://spaice-logistic.ai" },
+  { id: "08-enzyclean", name: "EnzyClean", href: "https://enzyclean.artificial-biometrics.com" }
 ];
 
 export function withLocale(locale: Locale, path: string): string {

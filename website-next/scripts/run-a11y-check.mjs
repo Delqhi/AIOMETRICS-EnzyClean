@@ -6,7 +6,7 @@ import { dirname } from "node:path";
 import net from "node:net";
 
 const HOST = process.env.A11Y_HOST ?? "127.0.0.1";
-const BASE_PATH = process.env.A11Y_PATH ?? "/";
+const BASE_PATH = process.env.A11Y_PATH ?? "/de";
 const TIMEOUT_MS = Number(process.env.A11Y_TIMEOUT_MS ?? "90000");
 const REPORT_FILE = process.env.A11Y_REPORT_FILE ?? ".reports/axe-results.json";
 
